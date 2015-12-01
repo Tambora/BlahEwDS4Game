@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bodies
+  - Heads
+  - Clothes
+  - Hairs
+  - Student
   layers:
   - Default
   - TransparentFX
