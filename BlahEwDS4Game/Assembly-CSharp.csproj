@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\AnimateChar.cs" />
      <Compile Include="Assets\Scripts\CreateStudent.cs" />
      <Compile Include="Assets\Scripts\Majors.cs" />
+     <Compile Include="Assets\Scripts\Names.cs" />
      <Compile Include="Assets\Scripts\StudentData.cs" />
      <Compile Include="Assets\Scripts\Taglines.cs" />
  <Reference Include="UnityEngine.UI">

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class StudentData : MonoBehaviour {
 
+    public string name;
     public string tagline;
     public string major;
     public float CGPA;

@@ -10,6 +10,7 @@ public class CreateStudent : MonoBehaviour {
     private List<GameObject> students;
 
     //private StudentData studentData; 
+    private Names names;
     private Taglines taglines;
     private Majors majors;
 
@@ -36,6 +37,7 @@ public class CreateStudent : MonoBehaviour {
 
         students = new List<GameObject>();
 
+        names = GetComponent<Names>();
         taglines = GetComponent<Taglines>();
         majors = GetComponent<Majors>();
 
@@ -82,7 +84,8 @@ public class CreateStudent : MonoBehaviour {
         //add StudentData script to track variables
         StudentData newData = newStudent.AddComponent<StudentData>();
 
-        //add tagline + major
+        //add name + tagline + major
+        newData.name = names.getName();
         newData.tagline = taglines.getTagline(0);   //0 corresponds to a location so we can have location specific tags, modify as needed to tie in with location script
         newData.major = majors.getMajor();
 
