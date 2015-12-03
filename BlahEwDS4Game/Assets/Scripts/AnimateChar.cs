@@ -11,7 +11,7 @@ public class AnimateChar : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        transform.Translate(0, -0.03f, 0);
+        transform.Translate(0, -0.09f, 0);
 	}
 	
 	// Update is called once per frame
@@ -21,12 +21,12 @@ public class AnimateChar : MonoBehaviour {
         {
             if (moveUp)
             {
-                transform.Translate(0, 0.01f, 0);
+                transform.Translate(0, 0.02f, 0);
                 moveUp = false;
             }
             else
             {
-                transform.Translate(0, -0.01f, 0);
+                transform.Translate(0, -0.02f, 0);
                 moveUp = true;
             }
 
