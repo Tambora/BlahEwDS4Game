@@ -60,7 +60,7 @@ public class CreateStudent : MonoBehaviour {
 
     //Currently students are created by clicking the box in the scene - when ready move code below to whatever function is called when player finds a student
     void OnMouseDown()
-    {
+    {	
 
         newStudent = new GameObject("Student" + count);
         count++;
@@ -89,10 +89,13 @@ public class CreateStudent : MonoBehaviour {
         newData.tagline = taglines.getTagline(0);   //0 corresponds to a location so we can have location specific tags, modify as needed to tie in with location script
         newData.major = majors.getMajor();
 
-        newStudent.AddComponent<BoxCollider2D>();
-        
+        newStudent.AddComponent<BoxCollider2D>();       	
+		newStudent.GetComponent<BoxCollider2D> ().isTrigger = true;
+
+		newStudent.AddComponent<showPopup>();
+
         //set spawn position
-        spawnPoint = mainCam.ScreenToWorldPoint(new Vector3(Random.Range(50, Screen.width-50), Random.Range(30, Screen.height-30), mainCam.nearClipPlane));
+        spawnPoint = mainCam.ScreenToWorldPoint(new Vector3(Random.Range(50, Screen.width-50), Random.Range(200, Screen.height-30), mainCam.nearClipPlane));
         newStudent.transform.Translate(spawnPoint);
 
         //add Student tag to game object
