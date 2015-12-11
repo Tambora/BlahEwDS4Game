@@ -46,3 +46,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Main
+    uniqueID: 3388173971
+    locked: 0
+  - name: Foreground
+    uniqueID: 3649715461
+    locked: 0
+  - name: Tutorial
+    uniqueID: 1633700059
+    locked: 0
