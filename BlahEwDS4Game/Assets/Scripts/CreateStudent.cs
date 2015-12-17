@@ -69,7 +69,7 @@ public class CreateStudent : MonoBehaviour {
             lastTime = Time.time;
         }
 
-        print(Time.time);
+//        print(Time.time);
 
 	}
 
