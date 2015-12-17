@@ -51,11 +51,7 @@ public class CreateStudent : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //for testing delete later
-        /*for (int i = 0; i < students.Count; i++ )
-        {
-            print(students[i].GetComponent<StudentData>().tagline);
-        }*/
+        
 	}
 
     //Currently students are created by clicking the box in the scene - when ready move code below to whatever function is called when player finds a student
@@ -81,6 +77,12 @@ public class CreateStudent : MonoBehaviour {
         newBody = Instantiate(bodies[rand]);
         newBody.transform.parent = newStudent.transform;
 
+        //add colliders + popup script for click handling
+        newStudent.AddComponent<BoxCollider2D>();
+        newStudent.GetComponent<BoxCollider2D>().isTrigger = true;
+
+        newStudent.AddComponent<showPopup>();
+
         //add StudentData script to track variables
         StudentData newData = newStudent.AddComponent<StudentData>();
 
@@ -89,14 +91,11 @@ public class CreateStudent : MonoBehaviour {
         newData.tagline = taglines.getTagline(0);   //0 corresponds to a location so we can have location specific tags, modify as needed to tie in with location script
         newData.major = majors.getMajor();
 
-        newStudent.AddComponent<BoxCollider2D>();       	
-		newStudent.GetComponent<BoxCollider2D> ().isTrigger = true;
-
-		newStudent.AddComponent<showPopup>();
-
         //set spawn position
-        spawnPoint = mainCam.ScreenToWorldPoint(new Vector3(Random.Range(50, Screen.width-50), Random.Range(200, Screen.height-30), mainCam.nearClipPlane));
+        spawnPoint = mainCam.ScreenToWorldPoint(new Vector3(Random.Range(50, Screen.width-50), Random.Range(200, Screen.height-30), 1));
         newStudent.transform.Translate(spawnPoint);
+
+        newStudent.transform.localScale += new Vector3(1.5f, 1.5f, 1.5f);
 
         //add Student tag to game object
         newStudent.tag = "Student";
