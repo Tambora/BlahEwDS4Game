@@ -1,17 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\goAwayMap.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\failyPassy.cs">
     <Files>
-      <File FileName="Assets\Scripts\mapPlacement.cs" Line="252" Column="39" />
-      <File FileName="Assets\Scripts\mapScroll.cs" Line="13" Column="3" />
-      <File FileName="Assets\Scripts\StudentData.cs" Line="12" Column="1" />
-      <File FileName="Assets\Scripts\CreateStudent.cs" Line="72" Column="28" />
-      <File FileName="Assets\Scripts\OpenTutorial.cs" Line="19" Column="9" />
-      <File FileName="Assets\Scripts\settings.cs" Line="20" Column="52" />
-      <File FileName="Assets\Scripts\main.cs" Line="8" Column="30" />
-      <File FileName="Assets\Scripts\showPopup.cs" Line="14" Column="3" />
-      <File FileName="Assets\Scripts\ToMap.cs" Line="17" Column="29" />
-      <File FileName="Assets\Scripts\goAwayMap.cs" Line="17" Column="29" />
+      <File FileName="Assets\Scripts\mapPlacement.cs" Line="98" Column="18" />
+      <File FileName="Assets\Scripts\mapScroll.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\StudentData.cs" Line="49" Column="3" />
+      <File FileName="Assets\Scripts\CreateStudent.cs" Line="124" Column="45" />
+      <File FileName="Assets\Scripts\OpenTutorial.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\settings.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\main.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\showPopup.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ToMap.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\goAwayMap.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\failyPassy.cs" Line="91" Column="4" />
+      <File FileName="Assets\Scripts\resetGame.cs" Line="25" Column="11" />
+      <File FileName="Assets\Scripts\GetSavedStudent.cs" Line="77" Column="47" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

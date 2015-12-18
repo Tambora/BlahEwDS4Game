@@ -8,16 +8,16 @@ public class StudentData : MonoBehaviour {
 	public string major;
 	public float CGPA;
 	
-	private float lastTime = 0f;
-	private float dragDelay = 1f;
-	private float distance;
-	private bool dragging = false;
+//	private float lastTime = 0f;
+//	private float dragDelay = 1f;
+//	private float distance;
+//	private bool dragging = false;
 	
 	private float DECAY_RATE = 0.09375f;
 	private float HW_DECAY = -0.33f;
 	private float S_DECAY = -0.00625f;
 	
-	public int studentState; // (0=neutral, 1=study, 2=hw, 3 = fail 4 = graduated)
+	public int studentState; // (0=neutral, 1=study, 2=hw, 3 = fail, 4 = graduated)
 	private int numUpdates;
 	
 	public int studyStart;
@@ -31,16 +31,22 @@ public class StudentData : MonoBehaviour {
     
 	System.DateTime epochStart;
 
-	private int half = 1;
-	private int full = 2;
-	private int day = 12;
+	private int half = 1; // Half hour
+	private int full = 2; // Full hour
+	private int day = 12; // Semester
 
 	public bool semesterEnd;
 
 	
 	// Use this for initialization
-	void Start () {
+	void Start () { //Saving Shit
 		epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+		PlayerPrefs.SetString (this.gameObject + " name", name);
+		PlayerPrefs.SetString (this.gameObject + " tagline", tagline);
+		PlayerPrefs.SetString (this.gameObject + " major", major);
+		PlayerPrefs.SetInt (this.gameObject + " ES", enrollSemester);
+		
+		
     }
 	
 	// Update is called once per frame
@@ -48,34 +54,35 @@ public class StudentData : MonoBehaviour {
 		
 		 systemTime = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
         
-        if (currentSemester < systemTime/day && studentState < 3) {
+        if (currentSemester + enrollSemester < systemTime/day && studentState < 3) { // this runs when the semester changes and the student is in uni
 
             currentSemester = (int)(systemTime - enrollSemester*day)/day;
             int semesterUpdate = (currentSemester + enrollSemester) * day;
             
-			if (hwStart + full*3 > semesterUpdate) {
-				int hwUpdates = (int)(semesterUpdate - (hwStart + full*3)/half);
-				inactiveTime = systemTime - (hwStart+full*3);
-				numUpdates = (int)((inactiveTime - full*8)/half);
+			if (hwStart + full*3 > semesterUpdate) { // This runs when the student is doing homework
+				int hwUpdates = (int)(semesterUpdate - (hwStart + full*3)/half); // THIS IS THE NUMBER OF HOMEWORK UPDATES OR TICKS THAT HAPPENED SINCE THE LAST UPDATE
+																				 // NUMBEROFUPDATES SHOWS UP ALL OVER, I'M NOT WRITINFG THIS COMMENT AGAIN
+				inactiveTime = systemTime - (hwStart+full*3);					// INACTIVE TIME SINCE THE LAST UPDATE 
+				numUpdates = (int)((inactiveTime - full*8)/half);				// NORMAL NON-HW TICKS
 				
-                if (CGPA + hwUpdates * HW_DECAY - numUpdates * DECAY_RATE < 3){
-                    studentState = 3;
+                if (CGPA + hwUpdates * HW_DECAY - numUpdates * DECAY_RATE < 3){ // THE DECAY MATH < 3 CGPA == fail
+                    studentState = 3; 
 					Debug.Log("THIS IS HW");
                 }
             }
             
-			else if (studyStart + full*8 > semesterUpdate) {
+			else if (studyStart + full*8 > semesterUpdate) {  // This runs when the student is studying
 				int studyUpdates = (int)(semesterUpdate - (studyStart + full*8)/half);
 				inactiveTime = systemTime - (studyStart+full*8);
 				numUpdates = (int)((inactiveTime - full*8)/half);
-				if (CGPA + studyUpdates * S_DECAY - numUpdates * DECAY_RATE < 3) {
+				if (CGPA + studyUpdates * S_DECAY - numUpdates * DECAY_RATE < 3) { // LOOK ABOVE
                     studentState = 3;
 					Debug.Log("THIS IS NOT HW");
 
                 }
             }
             
-            else {
+            else { // Runs when the student is wasting time(STATE = 0)
                 inactiveTime = systemTime - semesterUpdate;
 				numUpdates = (int)(inactiveTime/half);
 				if (CGPA + numUpdates * DECAY_RATE < 3){
@@ -85,17 +92,30 @@ public class StudentData : MonoBehaviour {
                 }
             }
 			if (currentSemester > 7){
-				studentState = 4;
+				studentState = 4; // Congrats
 
 			}
-        }
-		
-		if (systemTime - lastUpdate > half && studentState < 3) {
-			if (studyStart > lastUpdate) {
+			PlayerPrefs.SetInt(this.gameObject + " studentState", studentState);
+			PlayerPrefs.Save();
+			Debug.Log("This Happened.");
+		}
+
+		// The following code is weird. Proceed with caution.
+		// It checks if the student is currently studying
+			// If yes, it checks if 8 hours(full) have passed.
+				// If yes It adds the cgpa achieved after 8 hours of studying and the cgpa lost  after done studying and wasting time after
+				// If no, It just adds the cgpa achieved from the amount of studying done and sets the student state to studying.
+			// If no, check for homework. It works the same.
+		// Homework
+		// Neutral
+
+
+		if (systemTime - lastUpdate > half && studentState < 3) { // This runs every half (see variable above)
+			if (studyStart > lastUpdate) { // If the student begins to study after the last update
 				inactiveTime = systemTime - studyStart;
-				if(inactiveTime > full*8) {
+				if(inactiveTime > full*8) { 
 					numUpdates = (int)((inactiveTime - full*8)/half);
-					CGPA = 0.1f + CGPA - numUpdates * DECAY_RATE;
+					CGPA = 0.1f + CGPA - numUpdates * DECAY_RATE; // This actually changes the CGPA
 					studentState = 0;
 				}
 				else {
@@ -106,11 +126,11 @@ public class StudentData : MonoBehaviour {
 				lastUpdate = ((int)(inactiveTime/half))*half + studyStart; 
 			}
 			
-			else if (hwStart > lastUpdate) {
+			else if (hwStart > lastUpdate) { // HW after the last update
 				inactiveTime = systemTime - hwStart;
 				if(inactiveTime > full*3) {
 					numUpdates = (int)((inactiveTime - full*3)/half);
-					CGPA = 2 + CGPA - numUpdates * DECAY_RATE;
+					CGPA = 2 + CGPA - numUpdates * DECAY_RATE; // Decay and logic and stuff
 					studentState = 0;
 				}
 				else {
@@ -142,14 +162,17 @@ public class StudentData : MonoBehaviour {
 				CGPA = CGPA - numUpdates * DECAY_RATE;
 				lastUpdate = lastUpdate + numUpdates*half;
 			}
-			if (CGPA > 12f)
-				CGPA = 12f;
-			if (CGPA < 0)
+			if (CGPA > 12f) 
+				CGPA = 12f; // Can't have more than 12 CGPA
+			if (CGPA < 0) // You literally can't have such a low CGPA, but if you do, i got you
 				CGPA = 0;
-			//PlayerPrefs.SetFloat("Current GPA", CGPA);
-			//PlayerPrefs.SetInt("Student State", studentState);
-			//PlayerPrefs.SetInt("Latest Update", lastUpdate);
-			
+			PlayerPrefs.SetFloat( this.gameObject + " CGPA", CGPA);
+			PlayerPrefs.SetInt( this.gameObject + " HWS", hwStart);
+			PlayerPrefs.SetInt( this.gameObject + " SS", studyStart);
+			PlayerPrefs.SetInt( this.gameObject + " LU", lastUpdate); // fairly straightforward
+
+			PlayerPrefs.Save(); // IDK
+
 		}
 		/*if( dragging )
         {

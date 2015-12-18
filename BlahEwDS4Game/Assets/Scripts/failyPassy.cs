@@ -49,7 +49,9 @@ public class failyPassy : MonoBehaviour {
 		int gradsCount = 0;
 
 		foreach (GameObject x in createStudent.students) {
-			StudentData data = x.GetComponent<StudentData>();
+			if(x){
+				StudentData data = x.GetComponent<StudentData>();
+			
 
 			if( data.studentState == 3)
 			{
@@ -63,25 +65,28 @@ public class failyPassy : MonoBehaviour {
 				grads.Add(x);
 				gradsCount++;
 			}
-		}
-
-		if (failsCount > 0) {
-			popup = Instantiate(Resources.Load("gratzPop")) as GameObject;
-			popup.GetComponentsInChildren<TextMesh>()[0].text = fail;
-
-			foreach (GameObject x in fails)
-			{
-				Destroy(x);
 			}
 		}
 
-		if(gradsCount > 0){
-			popup = Instantiate(Resources.Load("gratzPop")) as GameObject;
-			popup.GetComponentsInChildren<TextMesh>()[0].text = pass;
+		if (!GameObject.Find ("Popup(Clone)")) {
+			if (failsCount > 0) {
 
-			foreach (GameObject x in grads)
-			{
-				Destroy(x);
+				popup = Instantiate (Resources.Load ("gratzPop")) as GameObject;
+				popup.GetComponentsInChildren<TextMesh> () [0].text = fail;
+
+				foreach (GameObject x in fails) {
+					Destroy (x);
+				}
+			}
+
+			if (gradsCount > 0) {
+				popup = Instantiate (Resources.Load ("gratzPop")) as GameObject;
+				popup.GetComponentsInChildren<TextMesh> () [0].text = pass;
+
+				foreach (GameObject x in grads) {
+					Destroy (x);
+
+				}
 			}
 		}
 

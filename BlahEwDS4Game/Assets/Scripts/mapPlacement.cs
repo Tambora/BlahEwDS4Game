@@ -118,15 +118,18 @@ public class mapPlacement : MonoBehaviour {
 //				float testNum2 = Mathf.Pow (0.000072f,2.0f);
 //				Debug.Log(testNum1);
 //				Debug.Log(testNum2);
-			if(locationData((float)latitude, (float)longitude) == 29){
+			if(locationData((float)latitude, (float)longitude) == 29 && coffeeCollected < maxCoffeeCollect){
 //				Debug.Log("Yay");
 				if(systemTime - lastTime > 1 && coffeeCollected < maxCoffeeCollect && coffeeThings.coffee < 100){
 					coffeeThings.collectCoffee();
+					GameObject.Find("coffeeAdd").GetComponent<SpriteRenderer>().enabled = true;
 //					Debug.Log(systemTime);
 					Debug.Log (coffeeThings.coffee);
 					lastTime = systemTime;
 					coffeeCollected++;
 				}
+			}else{
+				GameObject.Find("coffeeAdd").GetComponent<SpriteRenderer>().enabled = false;
 			}
 
 				//		remapLat = latLow2 + (latitude - latLow2) * (latHigh2 - latLow2) / (latHigh1 - latLow1);
