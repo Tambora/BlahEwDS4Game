@@ -27,7 +27,6 @@ public class CreateStudent : MonoBehaviour {
 
     Vector3 spawnPoint;
 
-    private int rand;
     private int count = 0;
 
     private GameObject CollectStudent;
@@ -78,23 +77,30 @@ public class CreateStudent : MonoBehaviour {
     {	
 
         newStudent = new GameObject("Student" + count);
-        count++;
 
-        //get a random number for body+head so they match
-        rand = Random.Range(0, bodies.Length);
+		//get a random number for body+head so they match
+		int heabodies = Random.Range(0, bodies.Length);
+		
+		int hair = Random.Range (0, hairs.Length);
+		int clothess = Random.Range (0, clothes.Length);
 
         //instantiate random body/head/hair/clothes and parent under new Student GameObject
-        newHair = Instantiate(hairs[Random.Range(0, hairs.Length)]);
+        newHair = Instantiate(hairs[hair]);
         newHair.transform.parent = newStudent.transform;
 
-        newHead = Instantiate(heads[rand]);
+        newHead = Instantiate(heads[heabodies]);
         newHead.transform.parent = newStudent.transform;
 
-        newClothes = Instantiate(clothes[Random.Range(0, clothes.Length)]);
+        newClothes = Instantiate(clothes[clothess]);
         newClothes.transform.parent = newStudent.transform;
 
-        newBody = Instantiate(bodies[rand]);
+        newBody = Instantiate(bodies[heabodies]);
         newBody.transform.parent = newStudent.transform;
+
+		PlayerPrefs.SetInt("Student"+count+" head", heabodies);
+		PlayerPrefs.SetInt("Student"+count+" hair", hair);
+		PlayerPrefs.SetInt("Student"+count+" clothes", clothess);
+		PlayerPrefs.SetInt("Count", count);
 
         //add StudentData script to track variables
         StudentData newData = newStudent.AddComponent<StudentData>();
@@ -109,8 +115,8 @@ public class CreateStudent : MonoBehaviour {
 		newStudent.GetComponent<BoxCollider2D> ().size = new Vector2 (0.25f, 0.25f);
 		newStudent.AddComponent<showPopup>();         
 
-		//Random GPA and timeStuf
-		newData.CGPA = Random.Range(3.0f, 5.0f);
+		//Random GPA and timeStuff
+		newData.CGPA = Random.Range(6.0f, 10.0f);
 		
 		System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
 		int timeNow = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
@@ -122,7 +128,7 @@ public class CreateStudent : MonoBehaviour {
 		newData.currentSemester = 0;
 
         //set spawn position
-        spawnPoint = mainCam.ScreenToWorldPoint(new Vector3(Random.Range(50, Screen.width-50), Random.Range(200, Screen.height-30), 1));
+        //spawnPoint = mainCam.ScreenToWorldPoint(new Vector3(Random.Range(50, Screen.width-50), Random.Range(200, Screen.height-30), 1));
         spawnPoint = new Vector3(0f, 1.36f, 0f);
         newStudent.transform.Translate(spawnPoint);
 		newStudent.transform.localScale += new Vector3 (1.5f, 1.5f, 1.5f);
@@ -142,7 +148,14 @@ public class CreateStudent : MonoBehaviour {
     {
         students.Add(newStudent);
         newStudent.transform.Translate(0, -1.36f, 0);
-        spawnPoint = mainCam.ScreenToWorldPoint(new Vector3(Random.Range(50, Screen.width - 50), Random.Range(100, Screen.height - 30), 1));
+		int spawnX = Random.Range(50, Screen.width - 50);
+		int spawnY = Random.Range(100, Screen.height - 100);
+		spawnPoint = mainCam.ScreenToWorldPoint(new Vector3(spawnX, spawnY, 1));
+
+		PlayerPrefs.SetFloat("Student"+count+" spawnX", spawnX);
+		PlayerPrefs.SetFloat("Student"+count+" spawnY", spawnY);
+		PlayerPrefs.Save();
+
         newStudent.transform.Translate(spawnPoint);
 
         newHair.GetComponent<Renderer>().sortingLayerName = "Main";
@@ -151,6 +164,8 @@ public class CreateStudent : MonoBehaviour {
         newClothes.GetComponent<Renderer>().sortingLayerName = "Main";
         newClothes.GetComponent<Renderer>().sortingOrder = 1;
         newBody.GetComponent<Renderer>().sortingLayerName = "Main";
+
+		count++;
 
         Destroy(popup);
     }

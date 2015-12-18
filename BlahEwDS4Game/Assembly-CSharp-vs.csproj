@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\CreateStudent.cs" />
      <Compile Include="Assets\Scripts\DestoryPopup.cs" />
      <Compile Include="Assets\Scripts\DismissStudent.cs" />
+     <Compile Include="Assets\Scripts\GetSavedStudent.cs" />
      <Compile Include="Assets\Scripts\Majors.cs" />
      <Compile Include="Assets\Scripts\Names.cs" />
      <Compile Include="Assets\Scripts\OpenSettings.cs" />
@@ -71,6 +72,8 @@
      <Compile Include="Assets\Scripts\introTouch.cs" />
      <Compile Include="Assets\Scripts\main.cs" />
      <Compile Include="Assets\Scripts\mapPlacement.cs" />
+     <Compile Include="Assets\Scripts\mapScroll.cs" />
+     <Compile Include="Assets\Scripts\resetGame.cs" />
      <Compile Include="Assets\Scripts\settings.cs" />
      <Compile Include="Assets\Scripts\showPopup.cs" />
      <Compile Include="Assets\Scripts\textScript.cs" />
