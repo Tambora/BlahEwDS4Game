@@ -12,8 +12,6 @@ public class showPopup : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		mainVar = GameObject.Find ("QUAD").GetComponent<main> ();
-		mainVar.selectedStudent = this.name; 
-		studentData = this.GetComponent<StudentData> ();
 //		selectedStudent = this.name;
 	}
 	
@@ -23,6 +21,9 @@ public class showPopup : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
+		mainVar.selectedStudent = this.name; 
+		Debug.Log (this);
+		studentData = this.GetComponent<StudentData> ();
 		if (mainVar.gameState) {
 			newPopup = Instantiate (Resources.Load ("Popup"))as GameObject;
 			newPopup.GetComponentsInChildren<TextMesh> () [1].text = studentData.name;
@@ -37,6 +38,14 @@ public class showPopup : MonoBehaviour {
 			newPopup.layer = 5;
 			newPopup.GetComponent<BoxCollider2D> ().isTrigger = true;
 			newPopup.GetComponent<BoxCollider2D> ().size = new Vector2 (5, 3);
+
+			AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
+			audioSources[1].Play();
+
+//			newPopup.AddComponent<AudioSource>();
+//			newPopup.GetComponent<AudioSource>().clip = Resources.Load("Audio/blip") as AudioClip;
+//			newPopup.GetComponent<AudioSource>().Play ();
+
 			newPopup.AddComponent<DestoryPopup> ();
 			mainVar.gameState = false;
 		}

@@ -14,7 +14,17 @@ public class ToMap : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		GameObject.Find("CampusMap").GetComponent<SpriteRenderer>().enabled = true;
-		GameObject.Find("playerDot").GetComponent<SpriteRenderer>().enabled = true;
+		if (GameObject.Find ("SettingsMenu(Clone)")) {
+			Destroy(GameObject.Find("SettingsMenu(Clone)"));
+			AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
+			audioSources[1].Play();
+		}
+		if (!GameObject.Find ("Popup(Clone)") && !GameObject.Find ("Map(Clone)") && !GameObject.Find ("EncounterBox(Clone)") && !GameObject.Find ("gradList(Clone)") && !GameObject.Find ("gratzPop(Clone)")) {
+			GameObject tut = Instantiate (Resources.Load ("Map")) as GameObject;
+//			GameObject.Find ("CampusMap").GetComponent<SpriteRenderer> ().enabled = true;
+			GameObject.Find ("playerDot").GetComponent<SpriteRenderer> ().enabled = true;
+			AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
+			audioSources[1].Play();
+		}
 	}
 }

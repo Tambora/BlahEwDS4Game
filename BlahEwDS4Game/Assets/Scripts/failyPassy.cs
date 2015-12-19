@@ -68,7 +68,7 @@ public class failyPassy : MonoBehaviour {
 			}
 		}
 
-		if (!GameObject.Find ("Popup(Clone)")) {
+		if (!GameObject.Find ("Popup(Clone)") && !GameObject.Find ("EncounterBox(Clone)") ) {
 			if (failsCount > 0) {
 
 				popup = Instantiate (Resources.Load ("gratzPop")) as GameObject;
