@@ -20,5 +20,7 @@ public class DismissStudent : MonoBehaviour {
     void OnMouseDown()
     {
         createStudent.dismissStudent(this.transform.parent.gameObject);
+		AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
+		audioSources[2].Play();
     }
 }

@@ -22,5 +22,7 @@ public class CollectStudent : MonoBehaviour {
     void OnMouseDown()
     {
         createStudent.keepStudent(this.transform.parent.gameObject);
+		AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
+		audioSources[1].Play();
     }
 }

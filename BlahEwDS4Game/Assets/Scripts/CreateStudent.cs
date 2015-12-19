@@ -75,72 +75,75 @@ public class CreateStudent : MonoBehaviour {
     //Currently students are created by clicking the box in the scene - when ready move code below to whatever function is called when player finds a student
     public void SpawnStudent()
     {	
+		if (!GameObject.Find ("Popup(Clone)") && !GameObject.Find ("Map(Clone)") && !GameObject.Find ("SettingsMenu(Clone)") && !GameObject.Find ("EncounterBox(Clone)") && !GameObject.Find ("gradList(Clone)") && !GameObject.Find ("gratzPop(Clone)")   ) {
+			newStudent = new GameObject ("Student" + count);
 
-        newStudent = new GameObject("Student" + count);
+			//get a random number for body+head so they match
+			int heabodies = Random.Range (0, bodies.Length);
+			
+			int hair = Random.Range (0, hairs.Length);
+			int clothess = Random.Range (0, clothes.Length);
 
-		//get a random number for body+head so they match
-		int heabodies = Random.Range(0, bodies.Length);
-		
-		int hair = Random.Range (0, hairs.Length);
-		int clothess = Random.Range (0, clothes.Length);
+			//instantiate random body/head/hair/clothes and parent under new Student GameObject
+			newHair = Instantiate (hairs [hair]);
+			newHair.transform.parent = newStudent.transform;
 
-        //instantiate random body/head/hair/clothes and parent under new Student GameObject
-        newHair = Instantiate(hairs[hair]);
-        newHair.transform.parent = newStudent.transform;
+			newHead = Instantiate (heads [heabodies]);
+			newHead.transform.parent = newStudent.transform;
 
-        newHead = Instantiate(heads[heabodies]);
-        newHead.transform.parent = newStudent.transform;
+			newClothes = Instantiate (clothes [clothess]);
+			newClothes.transform.parent = newStudent.transform;
 
-        newClothes = Instantiate(clothes[clothess]);
-        newClothes.transform.parent = newStudent.transform;
+			newBody = Instantiate (bodies [heabodies]);
+			newBody.transform.parent = newStudent.transform;
 
-        newBody = Instantiate(bodies[heabodies]);
-        newBody.transform.parent = newStudent.transform;
+			PlayerPrefs.SetInt ("Student" + count + " head", heabodies);
+			PlayerPrefs.SetInt ("Student" + count + " hair", hair);
+			PlayerPrefs.SetInt ("Student" + count + " clothes", clothess);
+			PlayerPrefs.SetInt ("Count", count);
 
-		PlayerPrefs.SetInt("Student"+count+" head", heabodies);
-		PlayerPrefs.SetInt("Student"+count+" hair", hair);
-		PlayerPrefs.SetInt("Student"+count+" clothes", clothess);
-		PlayerPrefs.SetInt("Count", count);
+			//add StudentData script to track variables
+			StudentData newData = newStudent.AddComponent<StudentData> ();
 
-        //add StudentData script to track variables
-        StudentData newData = newStudent.AddComponent<StudentData>();
+			//add name + tagline + major
+			newData.name = names.getName ();
+			newData.tagline = taglines.getTagline (0);   //0 corresponds to a location so we can have location specific tags, modify as needed to tie in with location script
+			newData.major = majors.getMajor ();
 
-        //add name + tagline + major
-        newData.name = names.getName();
-        newData.tagline = taglines.getTagline(0);   //0 corresponds to a location so we can have location specific tags, modify as needed to tie in with location script
-        newData.major = majors.getMajor();
+			newStudent.AddComponent<BoxCollider2D> ();       	
+			newStudent.GetComponent<BoxCollider2D> ().isTrigger = true;
+			newStudent.GetComponent<BoxCollider2D> ().size = new Vector2 (0.25f, 0.25f);
+			newStudent.AddComponent<showPopup> ();   
 
-        newStudent.AddComponent<BoxCollider2D>();       	
-		newStudent.GetComponent<BoxCollider2D> ().isTrigger = true;
-		newStudent.GetComponent<BoxCollider2D> ().size = new Vector2 (0.25f, 0.25f);
-		newStudent.AddComponent<showPopup>();         
+			//Random GPA and timeStuff
+			newData.CGPA = Random.Range (6.0f, 10.0f);
+			
+			System.DateTime epochStart = new System.DateTime (1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+			int timeNow = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+			newData.lastUpdate = timeNow;
+			newData.studyStart = timeNow - 3600 * 8 - 1;
+			newData.hwStart = timeNow - 3600 * 3 - 1;
+			
+			newData.enrollSemester = (int)(timeNow / 12);
+			newData.currentSemester = 0;
 
-		//Random GPA and timeStuff
-		newData.CGPA = Random.Range(6.0f, 10.0f);
-		
-		System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
-		int timeNow = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
-		newData.lastUpdate = timeNow;
-		newData.studyStart = timeNow - 3600*8 - 1;
-		newData.hwStart = timeNow - 3600*3 - 1;
-		
-		newData.enrollSemester = (int)(timeNow/12);
-		newData.currentSemester = 0;
+			//set spawn position
+			//spawnPoint = mainCam.ScreenToWorldPoint(new Vector3(Random.Range(50, Screen.width-50), Random.Range(200, Screen.height-30), 1));
+			spawnPoint = new Vector3 (0f, 1.36f, 0f);
+			newStudent.transform.Translate (spawnPoint);
+			newStudent.transform.localScale += new Vector3 (1.5f, 1.5f, 1.5f);
 
-        //set spawn position
-        //spawnPoint = mainCam.ScreenToWorldPoint(new Vector3(Random.Range(50, Screen.width-50), Random.Range(200, Screen.height-30), 1));
-        spawnPoint = new Vector3(0f, 1.36f, 0f);
-        newStudent.transform.Translate(spawnPoint);
-		newStudent.transform.localScale += new Vector3 (1.5f, 1.5f, 1.5f);
+			//add Student tag to game object
+			newStudent.tag = "Student";
+	        
+			AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
+			audioSources[3].Play();
 
-        //add Student tag to game object
-        newStudent.tag = "Student";
-        
-
-        CollectStudent = Instantiate(Resources.Load("EncounterBox")) as GameObject;
-        CollectStudent.GetComponentsInChildren<TextMesh>()[0].text = newData.name;
-        CollectStudent.GetComponentsInChildren<TextMesh>()[1].text = newData.major;
-        CollectStudent.GetComponentsInChildren<TextMesh>()[2].text = "'" + newData.tagline + "'";
+			CollectStudent = Instantiate (Resources.Load ("EncounterBox")) as GameObject;
+			CollectStudent.GetComponentsInChildren<TextMesh> () [0].text = newData.name;
+			CollectStudent.GetComponentsInChildren<TextMesh> () [1].text = newData.major;
+			CollectStudent.GetComponentsInChildren<TextMesh> () [2].text = "'" + newData.tagline + "'";
+		}
 
     }
 
@@ -164,7 +167,6 @@ public class CreateStudent : MonoBehaviour {
         newClothes.GetComponent<Renderer>().sortingLayerName = "Main";
         newClothes.GetComponent<Renderer>().sortingOrder = 1;
         newBody.GetComponent<Renderer>().sortingLayerName = "Main";
-
 		count++;
 
         Destroy(popup);
