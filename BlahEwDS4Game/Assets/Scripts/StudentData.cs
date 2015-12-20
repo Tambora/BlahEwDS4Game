@@ -170,6 +170,7 @@ public class StudentData : MonoBehaviour {
 			PlayerPrefs.SetInt( this.gameObject + " HWS", hwStart);
 			PlayerPrefs.SetInt( this.gameObject + " SS", studyStart);
 			PlayerPrefs.SetInt( this.gameObject + " LU", lastUpdate); // fairly straightforward
+            PlayerPrefs.SetInt(this.gameObject + " studentState", studentState);
 
 			PlayerPrefs.Save(); // IDK
 
