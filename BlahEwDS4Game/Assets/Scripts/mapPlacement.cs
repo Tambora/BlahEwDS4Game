@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class mapPlacement : MonoBehaviour {
 
-	double latitude = 45.384333;
-	double longitude = -75.698331;
+	double latitude = 45.382156;
+	double longitude = -75.696224;
+//	0.000072
 //	float altitude;
 //	float horizontal;
 	bool temp;
@@ -40,6 +42,8 @@ public class mapPlacement : MonoBehaviour {
 	int maxCoffeeCollect = 10;
 	int coffeeCollected = 0;
 
+	List<int> pastCoffeeLocations = new List<int>();
+
 	main mainVar;
 
 	// Use this for initialization
@@ -47,6 +51,12 @@ public class mapPlacement : MonoBehaviour {
 		// First, check if user has location service enabled
 		mainVar = GameObject.Find ("QUAD").GetComponent<main> ();
 		coffeeThings = GetComponent<Coffee> ();
+
+		pastCoffeeLocations.Add (21);
+		pastCoffeeLocations.Add (22);
+		pastCoffeeLocations.Add (27);
+		pastCoffeeLocations.Add (24);
+		pastCoffeeLocations.Add (25);
 
 		epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
 
@@ -96,6 +106,7 @@ public class mapPlacement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		bool newLocation = true;
 
 		systemTime = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 
@@ -111,32 +122,46 @@ public class mapPlacement : MonoBehaviour {
 				if(mainVar.scrollDistance != 0){
 					longLow2 = -4.44f + mainVar.scrollDistance + 0.04f;
 					longHigh2 = 4.44f + mainVar.scrollDistance - 0.04f;
-				}				
+				}else{
+					longLow2 = -4.44;
+					longHigh2 = 4.44;
+				}
 				remapLat = (latitude - latLow1) / (latHigh1 - latLow1) * (latHigh2 - latLow2) + latLow2;
 				remapLong = (longitude - longLow1) / (longHigh1 - longLow1) * (longHigh2 - longLow2) + longLow2;
 //				float testNum1 = Mathf.Pow(((float)latitude - 45.384333f),2.0f) + Mathf.Pow (((float)longitude + 75.698331f),2.0f);
 //				float testNum2 = Mathf.Pow (0.000072f,2.0f);
 //				Debug.Log(testNum1);
 //				Debug.Log(testNum2);
-			if(locationData((float)latitude, (float)longitude) == 29 && coffeeCollected < maxCoffeeCollect){
-//				Debug.Log("Yay");
-				if(systemTime - lastTime > 1 && coffeeCollected < maxCoffeeCollect && coffeeThings.coffee < 100){
-					coffeeThings.collectCoffee();
-					GameObject.Find("coffeeAdd").GetComponent<SpriteRenderer>().enabled = true;
-//					Debug.Log(systemTime);
-					Debug.Log (coffeeThings.coffee);
-					lastTime = systemTime;
-					coffeeCollected++;
+				if(pastCoffeeLocations.Contains(locationData((float)latitude, (float)longitude))){
+					if(coffeeCollected == 10){
+						newLocation = false;
+					}
+				}else{
+					coffeeCollected = 0;
+					pastCoffeeLocations.RemoveAt(0);
+					pastCoffeeLocations.Add(locationData((float)latitude, (float)longitude));
+					newLocation = true;
 				}
-			}else{
-				GameObject.Find("coffeeAdd").GetComponent<SpriteRenderer>().enabled = false;
-			}
 
-				//		remapLat = latLow2 + (latitude - latLow2) * (latHigh2 - latLow2) / (latHigh1 - latLow1);
-				//		remapLong = longLow2 + (longitude - longLow2) * (longHigh2 - longLow2) / (longHigh1 - longLow1);
-//				Debug.Log (remapLat);
-//				Debug.Log (remapLong);
-			transform.position = new Vector2 ((float)remapLong, (float)remapLat);
+				if(locationData((float)latitude, (float)longitude) >= 21 && coffeeCollected < maxCoffeeCollect && newLocation){
+	//				Debug.Log("Yay");
+					if(systemTime - lastTime > 1 && coffeeCollected < maxCoffeeCollect && coffeeThings.coffee < 100){
+						coffeeThings.collectCoffee();
+						GameObject.Find("coffeeAdd").GetComponent<SpriteRenderer>().enabled = true;
+	//					Debug.Log(systemTime);
+						Debug.Log (coffeeThings.coffee);
+						lastTime = systemTime;
+						coffeeCollected++;
+					}
+				}else{
+					GameObject.Find("coffeeAdd").GetComponent<SpriteRenderer>().enabled = false;
+				}
+
+					//		remapLat = latLow2 + (latitude - latLow2) * (latHigh2 - latLow2) / (latHigh1 - latLow1);
+					//		remapLong = longLow2 + (longitude - longLow2) * (longHigh2 - longLow2) / (longHigh1 - longLow1);
+	//				Debug.Log (remapLat);
+	//				Debug.Log (remapLong);
+				transform.position = new Vector2 ((float)remapLong, (float)remapLat);
 			}else{
 				gameObject.GetComponent<SpriteRenderer> ().material.color = Color.blue;
 			}
@@ -176,7 +201,7 @@ public class mapPlacement : MonoBehaviour {
 		float testSECONDCUP = Mathf.Pow((latInput - 45.384333f),2.0f) + Mathf.Pow ((longInput + 75.698331f),2.0f);
 		float testSTARBUCKS = Mathf.Pow((latInput - 45.383234f),2.0f) + Mathf.Pow ((longInput + 75.698081f),2.0f);
 		float testROOSTERS = Mathf.Pow((latInput - 45.383153f),2.0f) + Mathf.Pow ((longInput + 75.698022f),2.0f);
-		float testTIMAC = Mathf.Pow((latInput - 48.386274f),2.0f) + Mathf.Pow ((longInput + 75.693768f),2.0f);
+		float testTIMAC = Mathf.Pow((latInput - 45.386107f),2.0f) + Mathf.Pow ((longInput + 75.693972f),2.0f);
 		float testTIMCO = Mathf.Pow((latInput - 45.38718f),2.0f) + Mathf.Pow ((longInput + 75.697223f),2.0f);
 		float testTIMUC1 = Mathf.Pow((latInput - 45.383462f),2.0f) + Mathf.Pow ((longInput + 75.697741f),2.0f);
 		float testTIMUC4 = Mathf.Pow((latInput - 45.383307f),2.0f) + Mathf.Pow ((longInput + 75.69802f),2.0f);

@@ -173,7 +173,7 @@ public class StudentData : MonoBehaviour {
             PlayerPrefs.SetInt(this.gameObject.transform.name + " studentState", studentState);
 
 			PlayerPrefs.Save(); // IDK
-
+			Debug.Log("saving");
 		}
 		/*if( dragging )
         {

@@ -14,10 +14,14 @@ public class settings : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		if (GameObject.Find ("SettingsMenu(Clone)") == null) {
+		if (!GameObject.Find ("SettingsMenu(Clone)") && !GameObject.Find ("Popup(Clone)") && !GameObject.Find ("EncounterBox(Clone)") && !GameObject.Find ("gradList(Clone)") && !GameObject.Find ("gratzPop(Clone)")) {
 			GameObject tut = Instantiate (Resources.Load ("SettingsMenu")) as GameObject;
+			AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
+			audioSources[1].Play();
 		} else {
 			Destroy(GameObject.Find("SettingsMenu(Clone)"));
+			AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
+			audioSources[1].Play();
 		}
 //		if(GameObject.Find("UI_Settings").GetComponent<SpriteRenderer>().enabled == false){
 //			GameObject.Find("UI_Settings").GetComponent<SpriteRenderer>().enabled = true;
