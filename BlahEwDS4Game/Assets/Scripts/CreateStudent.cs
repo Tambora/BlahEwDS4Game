@@ -27,7 +27,7 @@ public class CreateStudent : MonoBehaviour {
 
     Vector3 spawnPoint;
 
-    public int count = 0;
+    private int count = 0;
 
     private GameObject CollectStudent;
 
@@ -99,7 +99,8 @@ public class CreateStudent : MonoBehaviour {
 
 		PlayerPrefs.SetInt("Student"+count+" head", heabodies);
 		PlayerPrefs.SetInt("Student"+count+" hair", hair);
-        PlayerPrefs.SetInt("Student" + count + " clothes", clothess);
+		PlayerPrefs.SetInt("Student"+count+" clothes", clothess);
+		PlayerPrefs.SetInt("Count", count);
 
         //add StudentData script to track variables
         StudentData newData = newStudent.AddComponent<StudentData>();
@@ -153,6 +154,7 @@ public class CreateStudent : MonoBehaviour {
 
 		PlayerPrefs.SetFloat("Student"+count+" spawnX", spawnX);
 		PlayerPrefs.SetFloat("Student"+count+" spawnY", spawnY);
+		PlayerPrefs.Save();
 
         newStudent.transform.Translate(spawnPoint);
 
@@ -164,9 +166,6 @@ public class CreateStudent : MonoBehaviour {
         newBody.GetComponent<Renderer>().sortingLayerName = "Main";
 
 		count++;
-
-        PlayerPrefs.SetInt("Count", count);
-        PlayerPrefs.Save();
 
         Destroy(popup);
     }
