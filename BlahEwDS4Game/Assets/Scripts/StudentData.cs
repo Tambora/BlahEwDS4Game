@@ -41,10 +41,10 @@ public class StudentData : MonoBehaviour {
 	// Use this for initialization
 	void Start () { //Saving Shit
 		epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
-		PlayerPrefs.SetString (this.gameObject + " name", name);
-		PlayerPrefs.SetString (this.gameObject + " tagline", tagline);
-		PlayerPrefs.SetString (this.gameObject + " major", major);
-		PlayerPrefs.SetInt (this.gameObject + " ES", enrollSemester);
+		PlayerPrefs.SetString (this.gameObject.transform.name + " name", name);
+		PlayerPrefs.SetString (this.gameObject.transform.name + " tagline", tagline);
+		PlayerPrefs.SetString (this.gameObject.transform.name + " major", major);
+		PlayerPrefs.SetInt (this.gameObject.transform.name + " ES", enrollSemester);
 		
 		
     }
@@ -95,7 +95,7 @@ public class StudentData : MonoBehaviour {
 				studentState = 4; // Congrats
 
 			}
-			PlayerPrefs.SetInt(this.gameObject + " studentState", studentState);
+			PlayerPrefs.SetInt(this.gameObject.transform.name + " studentState", studentState);
 			PlayerPrefs.Save();
 			Debug.Log("This Happened.");
 		}
@@ -166,11 +166,11 @@ public class StudentData : MonoBehaviour {
 				CGPA = 12f; // Can't have more than 12 CGPA
 			if (CGPA < 0) // You literally can't have such a low CGPA, but if you do, i got you
 				CGPA = 0;
-			PlayerPrefs.SetFloat( this.gameObject + " CGPA", CGPA);
-			PlayerPrefs.SetInt( this.gameObject + " HWS", hwStart);
-			PlayerPrefs.SetInt( this.gameObject + " SS", studyStart);
-			PlayerPrefs.SetInt( this.gameObject + " LU", lastUpdate); // fairly straightforward
-            PlayerPrefs.SetInt(this.gameObject + " studentState", studentState);
+			PlayerPrefs.SetFloat( this.gameObject.transform.name + " CGPA", CGPA);
+			PlayerPrefs.SetInt( this.gameObject.transform.name + " HWS", hwStart);
+			PlayerPrefs.SetInt( this.gameObject.transform.name + " SS", studyStart);
+			PlayerPrefs.SetInt( this.gameObject.transform.name + " LU", lastUpdate); // fairly straightforward
+            PlayerPrefs.SetInt(this.gameObject.transform.name + " studentState", studentState);
 
 			PlayerPrefs.Save(); // IDK
 
