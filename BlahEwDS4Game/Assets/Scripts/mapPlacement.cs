@@ -112,9 +112,9 @@ public class mapPlacement : MonoBehaviour {
 
 
 		gameObject.GetComponent<SpriteRenderer> ().material.color = Color.black;
-//		if (temp) {
-//			latitude = Input.location.lastData.latitude;
-//			longitude = Input.location.lastData.longitude;
+		if (temp) {
+			latitude = Input.location.lastData.latitude;
+			longitude = Input.location.lastData.longitude;
 //			altitude = Input.location.lastData.altitude;
 //			horizontal = Input.location.lastData.horizontalAccuracy;
 			if (latitude > latLow1 && latitude < latHigh1 && longitude > longLow1 && longitude < longHigh1) {
@@ -165,7 +165,7 @@ public class mapPlacement : MonoBehaviour {
 			}else{
 				gameObject.GetComponent<SpriteRenderer> ().material.color = Color.blue;
 			}
-//		}
+		}
 	}
 
 	int locationData(float latInput, float longInput){

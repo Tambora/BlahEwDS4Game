@@ -26,6 +26,7 @@ public class resetGame : MonoBehaviour {
 		}
 //		Destroy (GameObject.Find ("Student0"));
 		Debug.Log ("gameobjects");
-
+		Destroy(GameObject.Find("SettingsMenu(Clone)"));
+		Destroy(GameObject.Find("resetConfirm(Clone)"));	
 	}
 }

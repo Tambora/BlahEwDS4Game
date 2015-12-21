@@ -19,7 +19,7 @@ public class ToMap : MonoBehaviour {
 			AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
 			audioSources[1].Play();
 		}
-		if (!GameObject.Find ("Popup(Clone)") && !GameObject.Find ("Map(Clone)") && !GameObject.Find ("EncounterBox(Clone)") && !GameObject.Find ("gradList(Clone)") && !GameObject.Find ("gratzPop(Clone)")) {
+		if (!GameObject.Find ("Popup(Clone)") && !GameObject.Find ("Map(Clone)") && !GameObject.Find ("EncounterBox(Clone)") && !GameObject.Find ("gradList(Clone)") && !GameObject.Find ("gratzPop(Clone)") && !GameObject.Find ("TutorialBox(Clone)")) {
 			GameObject tut = Instantiate (Resources.Load ("Map")) as GameObject;
 //			GameObject.Find ("CampusMap").GetComponent<SpriteRenderer> ().enabled = true;
 			GameObject.Find ("playerDot").GetComponent<SpriteRenderer> ().enabled = true;
