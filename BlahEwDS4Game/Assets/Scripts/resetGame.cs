@@ -23,9 +23,10 @@ public class resetGame : MonoBehaviour {
 		Debug.Log ("playerprefs");
 		foreach (GameObject x in createStudent.students) {
 			Destroy(x);
+            print("pp loop");
 		}
 //		Destroy (GameObject.Find ("Student0"));
-		Debug.Log ("gameobjects");
+		//Debug.Log ("gameobjects");
 
 	}
 }
