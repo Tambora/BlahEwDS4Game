@@ -31,9 +31,9 @@ public class StudentData : MonoBehaviour {
     
 	System.DateTime epochStart;
 
-	private int half = 1; // Half hour
-	private int full = 2; // Full hour
-	private int day = 12; // Semester
+	private int half = 38; // Half hour
+	private int full = 76; // Full hour
+	private int day = 1824; // Semester
 
 	public bool semesterEnd;
 
