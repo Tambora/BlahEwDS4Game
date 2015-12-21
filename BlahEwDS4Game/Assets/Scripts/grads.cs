@@ -34,13 +34,17 @@ public class grads : MonoBehaviour {
 	
 	
 	void OnMouseDown(){
-		if (!GameObject.Find ("gradList(Clone)") && !GameObject.Find ("EncounterBox(Clone)") && !GameObject.Find ("gratzPop(Clone)") && !GameObject.Find ("SettingsMenu(Clone)") ) {
+		graduationList ();
+}
+
+	public void graduationList() {
+		if (!GameObject.Find ("EncounterBox(Clone)") && !GameObject.Find ("gratzPop(Clone)") && !GameObject.Find ("SettingsMenu(Clone)") ) {
 			gradList = Instantiate (Resources.Load ("gradList")) as GameObject;
 			AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
 			audioSources[1].Play();
 			List<GameObject> gradBox = new List<GameObject>();
-
-
+			
+			
 			oldGradCount = gss.gradCount; 
 			gradCount = 0;
 			int count = 0;
@@ -48,7 +52,7 @@ public class grads : MonoBehaviour {
 			int pages;
 			int np = 4;
 			int thisPage = 0;
-
+			
 			for(int i=0; PlayerPrefs.HasKey("Student"+i+" studentState"); i++) {
 				if (PlayerPrefs.GetInt("Student"+i+" studentState") == 4) {
 					gradCount++;
@@ -60,7 +64,7 @@ public class grads : MonoBehaviour {
 				stars = gradCount - oldGradCount;
 				oldGradCount = gradCount;
 			}
-
+			
 			if (pageNumbers > gradCount/4){
 				pageNumbers = gradCount/4;
 				print(pageNumbers);
@@ -73,20 +77,20 @@ public class grads : MonoBehaviour {
 				pageNumbers = 1;
 				print(pageNumbers);
 			}
-
+			
 			thisPage = gradCount;
-
-
+			
+			
 			for (int i = studentCount; i > 0; i--){
 				if (PlayerPrefs.GetInt("Student"+i+" studentState") == 4){
 					if((gradCount - (pageNumbers-1)*4) >= thisPage && np > 0){
 						print(pageNumbers);
-					
+						
 						gradBox.Add(Instantiate (Resources.Load ("UI_GradBox"))as GameObject);
 						gradBox[count].GetComponentsInChildren<TextMesh>()[0].text = PlayerPrefs.GetString("Student"+i+" name");
 						
 						newGravatar = new GameObject("Gravatar"+count);
-
+						
 						GameObject hair = Instantiate(cs.hairs[PlayerPrefs.GetInt("Student"+i+" hair")]);
 						GameObject head = Instantiate(cs.heads[PlayerPrefs.GetInt("Student"+i+" head")]);
 						GameObject body = Instantiate(cs.bodies[PlayerPrefs.GetInt("Student"+i+" head")]);
@@ -120,7 +124,7 @@ public class grads : MonoBehaviour {
 			}
 		}
 	}
-}
+	}
 
 
 

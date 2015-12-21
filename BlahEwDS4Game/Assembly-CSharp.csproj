@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\StudentData.cs" />
      <Compile Include="Assets\Scripts\Taglines.cs" />
      <Compile Include="Assets\Scripts\ToMap.cs" />
+     <Compile Include="Assets\Scripts\backScript.cs" />
      <Compile Include="Assets\Scripts\coffeeUpdate.cs" />
      <Compile Include="Assets\Scripts\colourTexxt.cs" />
      <Compile Include="Assets\Scripts\debugScript.cs" />
@@ -73,6 +74,7 @@
      <Compile Include="Assets\Scripts\mapPlacement.cs" />
      <Compile Include="Assets\Scripts\mapScroll.cs" />
      <Compile Include="Assets\Scripts\musicButton.cs" />
+     <Compile Include="Assets\Scripts\nextButtonScript.cs" />
      <Compile Include="Assets\Scripts\resetGame.cs" />
      <Compile Include="Assets\Scripts\resetPopup.cs" />
      <Compile Include="Assets\Scripts\settings.cs" />
