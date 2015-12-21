@@ -12,8 +12,10 @@ public class grads : MonoBehaviour {
 	List<GameObject> grAvatars = new List<GameObject>();
 
 	private int gradCount = 0;
-	private int oldGradCount = 10;
-	public int pageNumber = 1;
+	private int oldGradCount = 10; // THIS NEEDS TO GET THE NUMBER OF GRADS FROM STEPHS CODE
+	public int pageNumber = 1; // THIS NEEDS TO BE CHANGED DEPENDING ON THE PAGE NUMBER... !
+	public int stars = 0;
+
 	CreateStudent cs;
 	// Use this for initialization
 	void Start()
@@ -36,13 +38,11 @@ public class grads : MonoBehaviour {
 			List<GameObject> gradBox = new List<GameObject>();
 
 
-			int stars = 0;
 			int gradCount = 0; 
 			int count = 0;
 			int studentCount = 0;
 			int pages;
 			int thisPage;
-			int pageNumber = 2;
 
 			for(int i=0; PlayerPrefs.HasKey("Student"+i+" studentState"); i++) {
 				if (PlayerPrefs.GetInt("Student"+i+" studentState") == 4) {
