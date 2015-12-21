@@ -17,11 +17,14 @@ public class Majors : MonoBehaviour {
         "Computer Science",
         "Science",
         "Music",
+        "Public Affairs and Policy Management",
         "Engineering",
         "Humanities",
         "Language Studies",
         "Arts",
-        "Journalism"
+        "Global and International Studies",
+        "Journalism",
+        "Communication and Media Studies"
     };
 
     private string majorPick;
