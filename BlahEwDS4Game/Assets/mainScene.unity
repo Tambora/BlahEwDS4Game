@@ -968,7 +968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d8535681c1f7d4dbe9785035581aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pageNumber: 1
+  pageNumbers: 4
   stars: 0
 --- !u!212 &679383256
 SpriteRenderer:
@@ -1648,7 +1648,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
-  students: []
   bodies: []
   heads: []
   clothes: []

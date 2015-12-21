@@ -172,6 +172,12 @@ public class CreateStudent : MonoBehaviour {
         Destroy(popup);
     }
 
+
+    public void addToStudents(GameObject savedStudent)
+    {
+        students.Add(savedStudent);
+    }
+
     public void dismissStudent( GameObject popup )
     {
         Destroy(newStudent);

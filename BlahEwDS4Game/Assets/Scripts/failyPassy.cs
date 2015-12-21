@@ -64,7 +64,8 @@ public class failyPassy : MonoBehaviour {
 				pass += data.name + "\n";
 				grads.Add(x);
 				gradsCount++;
-			}
+                //x.SetActive(false);
+                }
 			}
 		}
 
