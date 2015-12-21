@@ -18,7 +18,7 @@ public class failyPassy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
-		day = 12;
+		day = 1800;
 		currentSemester = 0;
 
 		createStudent = GetComponent<CreateStudent> ();

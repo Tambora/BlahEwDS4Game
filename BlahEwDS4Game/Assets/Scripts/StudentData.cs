@@ -7,13 +7,13 @@ public class StudentData : MonoBehaviour {
 	public string tagline;
 	public string major;
 	public float CGPA;
-	
-//	private float lastTime = 0f;
-//	private float dragDelay = 1f;
-//	private float distance;
-//	private bool dragging = false;
-	
-	private float DECAY_RATE = 0.09375f;
+
+    //	private float lastTime = 0f;
+    //	private float dragDelay = 1f;
+    //	private float distance;
+    //	private bool dragging = false;
+
+    private float DECAY_RATE = 30f; ///0.09375f;
 	private float HW_DECAY = -0.33f;
 	private float S_DECAY = -0.00625f;
 	
@@ -31,9 +31,9 @@ public class StudentData : MonoBehaviour {
     
 	System.DateTime epochStart;
 
-	private int half = 1; // Half hour
-	private int full = 2; // Full hour
-	private int day = 12; // Semester
+	private int half = 38; // Half hour
+	private int full = 75; // Full hour
+	private int day = 1800; // Semester
 
 	public bool semesterEnd;
 

@@ -123,7 +123,7 @@ public class CreateStudent : MonoBehaviour {
 			newData.studyStart = timeNow - 3600 * 8 - 1;
 			newData.hwStart = timeNow - 3600 * 3 - 1;
 			
-			newData.enrollSemester = (int)(timeNow / 12);
+			newData.enrollSemester = (int)(timeNow / 1800);
 			newData.currentSemester = 0;
 
 			//set spawn position
