@@ -7,7 +7,7 @@ public class GetSavedStudent : MonoBehaviour {
     public Camera mainCam;
 
     private GameObject newStudent;
-    public List<GameObject> students;
+   //public List<GameObject> students;
 
     //private StudentData studentData; 
     private Names names;
@@ -48,7 +48,7 @@ public class GetSavedStudent : MonoBehaviour {
 
         createStudent = GameObject.Find("GameObject").GetComponent<CreateStudent>();
 
-        students = new List<GameObject>();
+        //students = new List<GameObject>();
 
         names = GetComponent<Names>();
         taglines = GetComponent<Taglines>();
@@ -64,11 +64,9 @@ public class GetSavedStudent : MonoBehaviour {
         for (int i = 0; i < createStudent.count; i++)
         {
             int state = PlayerPrefs.GetInt("Student" + i + " studentState");
-            print("studentState " + state);
 
             if (state != 3)
             {
-                print("k");
                 //get sprite vars
                 int head = PlayerPrefs.GetInt("Student" + i + " head");
                 int clothing = PlayerPrefs.GetInt("Student" + i + " clothes");
@@ -128,15 +126,24 @@ public class GetSavedStudent : MonoBehaviour {
 
                 newStudent.tag = "Student";
 
-                createStudent.students.Add(newStudent);
+                createStudent.addToStudents(newStudent);
 
                 if (state == 4)
                 {
-                    print("grad");
                     gradCount++;
+                    newStudent.SetActive(false);
                 }
                 else if (state < 3)
                 {
+                    //put on correct rendering layer
+                    newHair.GetComponent<Renderer>().sortingLayerName = "Main";
+                    newHair.GetComponent<Renderer>().sortingOrder = 1;
+                    newHead.GetComponent<Renderer>().sortingLayerName = "Main";
+                    newClothes.GetComponent<Renderer>().sortingLayerName = "Main";
+                    newClothes.GetComponent<Renderer>().sortingOrder = 1;
+                    newBody.GetComponent<Renderer>().sortingLayerName = "Main";
+
+                    //set position
                     print("pos " + posX + " " + posY);
                     spawnPoint = mainCam.ScreenToWorldPoint(new Vector3(posX, posY, 1));
                     newStudent.transform.Translate(spawnPoint);

@@ -22,11 +22,14 @@ public class resetGame : MonoBehaviour {
 		PlayerPrefs.DeleteAll();
 		Debug.Log ("playerprefs");
 		foreach (GameObject x in createStudent.students) {
-			Destroy(x);
+            //createStudent.students.Remove(x);
+            Destroy(x);
 		}
 //		Destroy (GameObject.Find ("Student0"));
 		Debug.Log ("gameobjects");
 		Destroy(GameObject.Find("SettingsMenu(Clone)"));
-		Destroy(GameObject.Find("resetConfirm(Clone)"));	
+		Destroy(GameObject.Find("resetConfirm(Clone)"));
+        createStudent.students.Clear();
+        createStudent.count = 0;	
 	}
 }
