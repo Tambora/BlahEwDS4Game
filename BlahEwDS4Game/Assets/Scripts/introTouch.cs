@@ -19,6 +19,9 @@ public class introTouch : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-
+		Destroy(GameObject.Find("introScreen"));
+		if (PlayerPrefs.GetInt ("Count") == 0) {
+			GameObject tut = Instantiate (Resources.Load ("TutorialBox")) as GameObject;
+		}
 	}
 }
