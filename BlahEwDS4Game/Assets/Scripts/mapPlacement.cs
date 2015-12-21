@@ -149,7 +149,7 @@ public class mapPlacement : MonoBehaviour {
 						coffeeThings.collectCoffee();
 						GameObject.Find("coffeeAdd").GetComponent<SpriteRenderer>().enabled = true;
 	//					Debug.Log(systemTime);
-						Debug.Log (coffeeThings.coffee);
+						//Debug.Log (coffeeThings.coffee);
 						lastTime = systemTime;
 						coffeeCollected++;
 					}

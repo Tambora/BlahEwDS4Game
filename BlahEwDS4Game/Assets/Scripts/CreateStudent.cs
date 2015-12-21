@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class CreateStudent : MonoBehaviour {
 
@@ -62,7 +63,7 @@ public class CreateStudent : MonoBehaviour {
             print(students[i].GetComponent<StudentData>().tagline);
         }*/
 
-        if( Time.time - lastTime > 5)
+        if( Time.time - lastTime > 100)
         {
             SpawnStudent();
             lastTime = Time.time;
@@ -80,7 +81,6 @@ public class CreateStudent : MonoBehaviour {
 
 			//get a random number for body+head so they match
 			int heabodies = Random.Range (0, bodies.Length);
-			
 			int hair = Random.Range (0, hairs.Length);
 			int clothess = Random.Range (0, clothes.Length);
 
