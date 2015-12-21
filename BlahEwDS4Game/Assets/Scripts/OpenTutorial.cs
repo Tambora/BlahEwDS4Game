@@ -15,7 +15,6 @@ public class OpenTutorial : MonoBehaviour {
 
     void OnMouseDown()
     {
-		Debug.Log ("DRAGGING");
         GameObject tut = Instantiate(Resources.Load("TutorialBox")) as GameObject;
     }
 }

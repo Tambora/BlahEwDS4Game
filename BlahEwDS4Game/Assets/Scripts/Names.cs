@@ -48,23 +48,16 @@ public class Names : MonoBehaviour {
 
     private string[] lastNames = new string[] 
     {
-        "Sandwhich",
         "Mito",
         "Freeman",
         "Baggins",
         "Fish",
         "Chopp",
-        "Butterfly",
         "Pines",
-        "Humblebloom",
-        "Squarepants",
         "Stark",
-        "Targaryen",
         "Greyjoy",
-        "Lannister",
         "Tyrell",
         "Snow",
-        "Baratheon",
         "Mormont",
         "Arryn",
         "Tarth",
@@ -81,9 +74,7 @@ public class Names : MonoBehaviour {
         "Glover",
         "Karstark",
         "Bolton",
-        "Estermont",
-        "Dondarrion",
-        "Connington",
+        "Estermont"
     };
 
     private string fNamePick;

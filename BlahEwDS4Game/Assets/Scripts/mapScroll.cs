@@ -21,7 +21,7 @@ public class mapScroll : MonoBehaviour {
 
 	void OnMouseDrag(){
 //		transform.position = new Vector2 (transform.position.x, transform.position.y);
-		if (!dragging) {
+		if (!dragging && Input.mousePosition.y > -3.88) {
 			initialX = Input.mousePosition.x;
 			dragging = true;
 		}

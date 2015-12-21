@@ -6,25 +6,20 @@ public class Majors : MonoBehaviour {
     private string[] majors = new string[] 
     {
         "Architecture",
-        "Information Technology",
         "Industrial Design",
         "Health Sciences",
         "Commerce",
-        "International Business",
         "Social Work",
         "Cognitive Science",
         "Mathematics",
         "Computer Science",
         "Science",
         "Music",
-        "Public Affairs and Policy Management",
         "Engineering",
         "Humanities",
         "Language Studies",
         "Arts",
-        "Global and International Studies",
-        "Journalism",
-        "Communication and Media Studies"
+        "Journalism"
     };
 
     private string majorPick;

@@ -10,12 +10,12 @@ public class Taglines : MonoBehaviour {
    private string[][] taglines = new string[][] 
     {
        new string[] { 
-            "What day is it?",
-            "I hope class is \ncancelled today.",
-            "How do I function.",
-			"Sleep is for \ncasuals.",
-			"I’m almost \nout of ramen.",
-            "School is cool."
+			"What day is\nit?",
+			"I hope class\nis cancelled\ntoday.",
+			"How do I\nfunction.",
+			"Sleep is\nfor casuals.",
+			"I’m almost\nout of ramen.",
+			"School is\ncool."
         },
         new string[] {
             "I've been stuck in Mackenzie for ten days..."

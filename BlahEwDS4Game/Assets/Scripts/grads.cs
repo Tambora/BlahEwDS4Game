@@ -50,7 +50,7 @@ public class grads : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		if (!GameObject.Find ("gradList(Clone)") && !GameObject.Find ("EncounterBox(Clone)") && !GameObject.Find ("gratzPop(Clone)") && !GameObject.Find ("SettingsMenu(Clone)") ) {
+		if (!GameObject.Find ("SettingsMenu(Clone)") && !GameObject.Find ("Popup(Clone)") && !GameObject.Find ("EncounterBox(Clone)") && !GameObject.Find ("gradList(Clone)") && !GameObject.Find ("gratzPop(Clone)") && !GameObject.Find ("TutorialBox(Clone)") ) {
 			gradList = Instantiate (Resources.Load ("gradList")) as GameObject;
 			AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
 			audioSources[1].Play();
