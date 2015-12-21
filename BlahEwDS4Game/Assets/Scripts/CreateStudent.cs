@@ -62,7 +62,7 @@ public class CreateStudent : MonoBehaviour {
             print(students[i].GetComponent<StudentData>().tagline);
         }*/
 
-        if( Time.time - lastTime > 2)
+        if( Time.time - lastTime > 100)
         {
             SpawnStudent();
             lastTime = Time.time;
