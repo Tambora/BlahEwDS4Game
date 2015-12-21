@@ -62,7 +62,7 @@ public class CreateStudent : MonoBehaviour {
             print(students[i].GetComponent<StudentData>().tagline);
         }*/
 
-        if( Time.time - lastTime > 100)
+        if( Time.time - lastTime > 2)
         {
             SpawnStudent();
             lastTime = Time.time;
@@ -75,7 +75,7 @@ public class CreateStudent : MonoBehaviour {
     //Currently students are created by clicking the box in the scene - when ready move code below to whatever function is called when player finds a student
     public void SpawnStudent()
     {	
-		if (!GameObject.Find ("Popup(Clone)") && !GameObject.Find ("Map(Clone)") && !GameObject.Find ("SettingsMenu(Clone)") && !GameObject.Find ("EncounterBox(Clone)") && !GameObject.Find ("gradList(Clone)") && !GameObject.Find ("gratzPop(Clone)")   ) {
+		if (!GameObject.Find ("Popup(Clone)") && !GameObject.Find ("Map(Clone)") && !GameObject.Find ("SettingsMenu(Clone)") && !GameObject.Find ("EncounterBox(Clone)") && !GameObject.Find ("gradList(Clone)") && !GameObject.Find ("gratzPop(Clone)") && !GameObject.Find ("TutorialBox(Clone)") && !GameObject.Find ("introScreen")) {
 			newStudent = new GameObject ("Student" + count);
 
 			//get a random number for body+head so they match
