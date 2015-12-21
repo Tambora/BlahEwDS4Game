@@ -62,7 +62,7 @@ public class CreateStudent : MonoBehaviour {
             print(students[i].GetComponent<StudentData>().tagline);
         }*/
 
-        if( Time.time - lastTime > 200)
+        if( Time.time - lastTime > 5)
         {
             SpawnStudent();
             lastTime = Time.time;
@@ -124,7 +124,7 @@ public class CreateStudent : MonoBehaviour {
 			newData.studyStart = timeNow - 3600 * 8 - 1;
 			newData.hwStart = timeNow - 3600 * 3 - 1;
 			
-			newData.enrollSemester = (int)(timeNow / 12);
+			newData.enrollSemester = (int)(timeNow / 3);
 			newData.currentSemester = 0;
 
 			//set spawn position

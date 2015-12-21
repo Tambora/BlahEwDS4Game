@@ -23,7 +23,6 @@ public class showPopup : MonoBehaviour {
 	void OnMouseDown(){
 		if (!GameObject.Find ("Popup(Clone)") && !GameObject.Find ("Map(Clone)") && !GameObject.Find ("EncounterBox(Clone)") && !GameObject.Find ("gradList(Clone)") && !GameObject.Find ("gratzPop(Clone)")) {
 			mainVar.selectedStudent = this.name; 
-			Debug.Log (this);
 			studentData = this.GetComponent<StudentData> ();
 			if (mainVar.gameState) {
 				newPopup = Instantiate (Resources.Load ("Popup"))as GameObject;

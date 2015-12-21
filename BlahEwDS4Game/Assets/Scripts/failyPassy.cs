@@ -18,7 +18,7 @@ public class failyPassy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
-		day = 12;
+		day = 3;
 		currentSemester = 0;
 
 		createStudent = GetComponent<CreateStudent> ();
@@ -42,8 +42,6 @@ public class failyPassy : MonoBehaviour {
 	{
 		string fail = "FAILED STUDENTS\n";
 		string pass = "NEW GRADUATES!\n";
-
-		print ("report card");
 
 		int failsCount = 0;
 		int gradsCount = 0;

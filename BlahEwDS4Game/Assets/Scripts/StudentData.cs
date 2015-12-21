@@ -33,7 +33,7 @@ public class StudentData : MonoBehaviour {
 
 	private int half = 1; // Half hour
 	private int full = 2; // Full hour
-	private int day = 12; // Semester
+	private int day = 3; // Semester
 
 	public bool semesterEnd;
 
@@ -45,6 +45,8 @@ public class StudentData : MonoBehaviour {
 		PlayerPrefs.SetString (this.gameObject + " tagline", tagline);
 		PlayerPrefs.SetString (this.gameObject + " major", major);
 		PlayerPrefs.SetInt (this.gameObject + " ES", enrollSemester);
+		print(this.gameObject + " name");
+
 		
 		
     }
@@ -67,7 +69,6 @@ public class StudentData : MonoBehaviour {
 				
                 if (CGPA + hwUpdates * HW_DECAY - numUpdates * DECAY_RATE < 3){ // THE DECAY MATH < 3 CGPA == fail
                     studentState = 3; 
-					Debug.Log("THIS IS HW");
                 }
             }
             
@@ -77,7 +78,6 @@ public class StudentData : MonoBehaviour {
 				numUpdates = (int)((inactiveTime - full*8)/half);
 				if (CGPA + studyUpdates * S_DECAY - numUpdates * DECAY_RATE < 3) { // LOOK ABOVE
                     studentState = 3;
-					Debug.Log("THIS IS NOT HW");
 
                 }
             }
@@ -97,7 +97,6 @@ public class StudentData : MonoBehaviour {
 			}
 			PlayerPrefs.SetInt(this.gameObject + " studentState", studentState);
 			PlayerPrefs.Save();
-			Debug.Log("This Happened.");
 		}
 
 		// The following code is weird. Proceed with caution.
@@ -170,9 +169,9 @@ public class StudentData : MonoBehaviour {
 			PlayerPrefs.SetInt( this.gameObject + " HWS", hwStart);
 			PlayerPrefs.SetInt( this.gameObject + " SS", studyStart);
 			PlayerPrefs.SetInt( this.gameObject + " LU", lastUpdate); // fairly straightforward
+			PlayerPrefs.SetInt(this.gameObject + " studentState", studentState);
 
 			PlayerPrefs.Save(); // IDK
-			Debug.Log("saving");
 		}
 		/*if( dragging )
         {
@@ -184,24 +183,5 @@ public class StudentData : MonoBehaviour {
 	
 	
 	
-	void OnMouseDown()
-	{
-		/*if(Time.time - lastTime > dragDelay)
-        {
-            dragging = true;
-        }
-        else
-        {
-            ///info pop up////
 
-            print(tagline);
-            print(major);
-        }*/
-		print("meep");
-	}
-	
-	/*void OnMouseUp()
-    {
-        dragging = false;
-    }*/
 }

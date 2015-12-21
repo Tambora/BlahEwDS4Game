@@ -24,15 +24,12 @@ public class CloseWindow : MonoBehaviour {
 
     void OnMouseDown()
     {
-		Debug.Log ("helllo");
         if ( createStudent.first )
         {
             createStudent.SpawnStudent();
             createStudent.first = false;
         }
-		Debug.Log ("destroying");
         Destroy(this.transform.parent.gameObject);
-		Debug.Log ("destroyed");
 		AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
 		audioSources[2].Play();
     }
