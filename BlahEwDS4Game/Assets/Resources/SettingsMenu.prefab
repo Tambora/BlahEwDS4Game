@@ -27,8 +27,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 431880}
   - 212: {fileID: 21225944}
+<<<<<<< HEAD
+  - 114: {fileID: 11471340}
+  - 61: {fileID: 6169646}
+=======
   - 114: {fileID: 11436522}
   - 61: {fileID: 6115610}
+>>>>>>> refs/remotes/origin/master
   m_Layer: 0
   m_Name: UI_Settings_ResetGame
   m_TagString: Untagged
@@ -269,7 +274,24 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0.00000016391277, y: 0}
   serializedVersion: 2
+<<<<<<< HEAD
+  m_Size: {x: 10.8000002, y: 1.82000005}
+--- !u!61 &6169646
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141916}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 1.63912773e-07, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 10.8000002, y: 1.78999996}
+=======
   m_Size: {x: 10.8, y: 1.82}
+>>>>>>> refs/remotes/origin/master
 --- !u!61 &6180564
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -368,6 +390,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbae9c919f256d744b32e88581b091ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11471340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcceda151e9e4bc4faca8836619d07ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11479342
