@@ -25,7 +25,7 @@ public class DestoryPopup : MonoBehaviour {
 		AudioSource[] audioSources = GameObject.Find("Main Camera").GetComponents<AudioSource>();
 		audioSources[2].Play();
 
-		Destroy(this.transform.parent.gameObject);
+		Destroy (this.gameObject);
 		Debug.Log ("destroy");
 		mainVar.gameState = true;
 	}
