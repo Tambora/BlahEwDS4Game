@@ -39,6 +39,8 @@ public class GetSavedStudent : MonoBehaviour {
 
     CreateStudent createStudent;
 
+    public int gradCount = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -61,7 +63,7 @@ public class GetSavedStudent : MonoBehaviour {
         createStudent.count = PlayerPrefs.GetInt("Count");
         for (int i = 0; i < createStudent.count; i++)
         {
-            int state = PlayerPrefs.GetInt("Student0 studentState");
+            int state = PlayerPrefs.GetInt("Student" + i + " studentState");
             print("studentState " + state);
 
             if (state != 3)
@@ -131,6 +133,7 @@ public class GetSavedStudent : MonoBehaviour {
                 if (state == 4)
                 {
                     print("grad");
+                    gradCount++;
                 }
                 else if (state < 3)
                 {
