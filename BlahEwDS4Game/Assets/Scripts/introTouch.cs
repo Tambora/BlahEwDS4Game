@@ -11,14 +11,18 @@ public class introTouch : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown(0)) {
-			gameObject.SetActive(false);
-//			GameObject.Find("locationText").GetComponent<Text>();
-//			Debug.
-		}
+//		if (Input.GetMouseButtonDown(0)) {
+//			gameObject.SetActive(false);
+////			GameObject.Find("locationText").GetComponent<Text>();
+////			Debug.
+//		}
 	}
 
 	void OnMouseDown(){
-
+		Debug.Log ("intro");
+		Destroy (GameObject.Find("introScreen"));
+		if (PlayerPrefs.GetInt ("Count") == 0) {
+			GameObject tut = Instantiate (Resources.Load ("TutorialBox")) as GameObject;
+		}
 	}
 }
