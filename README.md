@@ -1,4 +1,4 @@
-# BlahEwDS4Game
+# HowToStudent
 We encourage caffine addiction.
 
 Steps.
